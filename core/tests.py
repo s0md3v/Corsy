@@ -26,12 +26,12 @@ def active_tests(url, root, scheme, delay):
 	acao_header = requester(url, scheme, root + '.example.com')
 	if acao_header:
 		if acao_header == (scheme + root + '.example.com'):
-			return 'Post domain wildcard'
+			return 'Post-domain wildcard'
 	time.sleep(delay)
 	acao_header = requester(url, scheme, 'd3v' + root)
 	if acao_header:
 		if acao_header == (scheme + 'd3v' + root):
-			return 'Pre domain wildcard'
+			return 'Pre-domain wildcard'
 	time.sleep(delay)
 	acao_header = requester(url, '', 'null')
 	if acao_header:
