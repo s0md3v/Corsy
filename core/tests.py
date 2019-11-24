@@ -5,15 +5,16 @@ from core.requester import requester
 
 def passive_tests(url, acao_header):
 	root = host(url)
+	if acao_header == '*':
+		return 'Wildcard value'
 	if root:
 		if root != host(acao_header):
+			print(acao_header)
 			return 'Third party allowed'
 		elif url.startswith('http://'):
 			return 'HTTP origin allowed'
 		else:
 			return False
-	elif acao_header == '*':
-		return 'Wildcard value'
 	else:
 		return 'Invalid value'
 
