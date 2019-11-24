@@ -20,13 +20,13 @@
 		"Severity" : "Low",
 		"Exploitation" : "Not possible"
 	},
-	"post domain wildcard" : {
-		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as as preffix.",
+	"post-domain wildcard" : {
+		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as a preffix.",
 		"Severity" : "High",
 		"Exploitation" : "Make requests from target.com.attacker.com"
 	},
-	"pre domain wildcard" : {
-		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as as suffix.",
+	"pre-domain wildcard" : {
+		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as a suffix.",
 		"Severity" : "High",
 		"Exploitation" : "Make requests from attacker-target.com"
 	},
