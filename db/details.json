@@ -44,5 +44,10 @@
 		"Description" : "The origin verification is flawed and can be bypassed using a backtick (`).",
 		"Severity" : "High",
 		"Exploitation" : "Set the 'Origin' header to %60.example.com"
+	},
+	"unescaped regex" : {
+		"Description" : "The regex used for origin verification contains an unescaped dot (.) character.",
+		"Severity" : "High",
+		"Exploitation" : "If the target is sub.example.com, make requests from subxexample.com"
 	}
 }
