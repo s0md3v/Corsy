@@ -13,7 +13,7 @@ except ImportError:
 	from urlparse import urlparse
 
 print('''
-    %sＣＯＲＳＹ  %s{%sv0.1-beta%s}%s
+    %sＣＯＲＳＹ  %s{%sv0.2-beta%s}%s
 ''' % (green, white, grey, white, end))
 
 parser = argparse.ArgumentParser()
