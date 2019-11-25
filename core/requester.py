@@ -11,6 +11,6 @@ headers = {
 
 def requester(url, scheme, origin):
 	headers['Origin'] = scheme + origin
-	response = requests.get(url, headers).headers
+	response = requests.get(url, headers=headers).headers
 	if 'Access-Control-Allow-Origin' in response:
 		return response['Access-Control-Allow-Origin']
