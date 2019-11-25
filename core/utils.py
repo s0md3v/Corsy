@@ -14,4 +14,4 @@ def host(string):
 			return False
 
 def load_json(file):
-	return json.loads(load_file('./db/details.json'))
+	return json.loads(load_file(file))
