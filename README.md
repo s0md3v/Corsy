@@ -37,6 +37,7 @@ A delay between consecutive requests can be specified with `-d` option.
 - Post-domain bypass
 - Backtick bypass
 - Null origin bypass
+- Unescaped dot bypass
 - Invalid value
 - Wild card value
 - Origin reflection test
