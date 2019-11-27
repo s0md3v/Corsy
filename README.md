@@ -54,5 +54,4 @@ A delay between consecutive requests can be specified with `-d` option.
 ### Support the developer
 Liked the project? Donate a few bucks to motivate me to keep writing code for free.
 
-- Paypal - [https://paypal.me/s0md3v](https://paypal.me/s0md3v)
-- Credit/Debit Card - [https://www.buymeacoffee.com/s0md3v](https://www.buymeacoffee.com/s0md3v)
+[![Donate](https://i.ibb.co/1R5wK5S/28491754-14774f54-6f14-11e7-9975-8a5faeda7e30.gif)](https://s0md3v.github.io/donate.html)
