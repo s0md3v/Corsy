@@ -44,9 +44,9 @@ A delay between consecutive requests can be specified with `-d` option.
 
 The container image is based on python3-slim, which itself does not contain all packages. See https://hub.docker.com/_/python/.
 
-Build the container using: `docker build -t <IMAGE>:<VERSION> .`
-Tag and push the image to the container registry with `docker tag` && `docker push`
-Run the container with `docker run -it <IMAGE>:<VERSION> -u https://example.com` 
+- Build the container using: `docker build -t <IMAGE>:<VERSION> .`
+- Tag and push the image to the container registry with `docker tag` && `docker push`
+- Run the container with `docker run -it <IMAGE>:<VERSION> -u https://example.com` 
 
 The entrypoint of this container is the corsy.py script which expects the required parameters. These will be applied to the Docker container with the `CMD` directive.
 
