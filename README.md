@@ -40,6 +40,16 @@ A delay between consecutive requests can be specified with `-d` option.
 
 > *Note:* This is a beta version, features such as JSON output and scanning multiple hosts will be added later.
 
+#### Docker
+
+The container image is based on python3-slim, which itself does not contain all packages. See https://hub.docker.com/_/python/.
+
+Build the container using: `docker build -t <IMAGE>:<VERSION> .`
+Tag and push the image to the container registry with `docker tag` && `docker push`
+Run the container with `docker run -it <IMAGE>:<VERSION> -u https://example.com` 
+
+The entrypoint of this container is the corsy.py script which expects the required parameters. These will be applied to the Docker container with the `CMD` directive.
+
 ### Tests implemented
 - Pre-domain bypass
 - Post-domain bypass
@@ -51,6 +61,7 @@ A delay between consecutive requests can be specified with `-d` option.
 - Origin reflection test
 - Third party allowance test
 - HTTP allowance test
+
 ### Support the developer
 Liked the project? Donate a few bucks to motivate me to keep writing code for free.
 
