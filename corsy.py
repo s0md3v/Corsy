@@ -19,10 +19,12 @@ print('''
 parser = argparse.ArgumentParser()
 parser.add_argument('-u', help='target url', dest='url')
 parser.add_argument('-d', help='request delay', dest='delay', type=float, default=0)
+parser.add_argument('-k', help='Allow insecure server connections when using SSL', dest='insecure', action='store_true')
 args = parser.parse_args()
 
 target_url = args.url
 delay = args.delay
+insecure = args.insecure
 
 def cors(target, delay, scheme=False):
 	url = target
@@ -33,7 +35,7 @@ def cors(target, delay, scheme=False):
 	netloc = parsed.netloc
 	scheme = parsed.scheme
 	url = scheme + '://' + netloc
-	active = active_tests(url, root, scheme, delay)
+	active = active_tests(url, root, scheme, delay, insecure)
 	return active
 
 details = load_json('./db/details.json')

@@ -18,40 +18,40 @@ def passive_tests(url, acao_header):
 	else:
 		return 'Invalid value'
 
-def active_tests(url, root, scheme, delay):
-	acao_header = requester(url, scheme, 'example.com')
+def active_tests(url, root, scheme, delay, insecure=False):
+	acao_header = requester(url, scheme, 'example.com', insecure)
 	if acao_header:
 		if acao_header == (scheme + 'example.com'):
 			return 'Origin reflected'
 	time.sleep(delay)
-	acao_header = requester(url, scheme, root + '.example.com')
+	acao_header = requester(url, scheme, root + '.example.com', insecure)
 	if acao_header:
 		if acao_header == (scheme + root + '.example.com'):
 			return 'Post-domain wildcard'
 	time.sleep(delay)
-	acao_header = requester(url, scheme, 'd3v' + root)
+	acao_header = requester(url, scheme, 'd3v' + root, insecure)
 	if acao_header:
 		if acao_header == (scheme + 'd3v' + root):
 			return 'Pre-domain wildcard'
 	time.sleep(delay)
-	acao_header = requester(url, '', 'null')
+	acao_header = requester(url, '', 'null', insecure)
 	if acao_header:
 		if acao_header == 'null':
 			return 'Null origin allowed'
 	time.sleep(delay)
-	acao_header = requester(url, scheme, root + '%60.example.com')
+	acao_header = requester(url, scheme, root + '%60.example.com', insecure)
 	if acao_header:
 		if '`.example.com' in acao_header:
 			return 'Broken parser'
 	if root.count('.') > 1:
 		time.sleep(delay)
 		spoofed_root = root.replace('.', 'x', 1)
-		acao_header = requester(url, scheme, spoofed_root)
+		acao_header = requester(url, scheme, spoofed_root, insecure)
 		if acao_header:
 			if host(acao_header) == spoofed_root:
 				return 'Unescaped regex'
 		time.sleep(delay)
-	acao_header = requester(url, 'http', root)
+	acao_header = requester(url, 'http', root, insecure)
 	if acao_header:
 		if acao_header.startswith('http://'):
 			return 'HTTP origin allowed'

@@ -38,6 +38,8 @@ Using Corsy is pretty simple
 
 A delay between consecutive requests can be specified with `-d` option.
 
+If you're testing a site with an invalid SSL certificate, you can disable verification with `-k` option.
+
 > *Note:* This is a beta version, features such as JSON output and scanning multiple hosts will be added later.
 
 ### Tests implemented

@@ -1,4 +1,5 @@
 import requests
+import urllib3
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0',
@@ -9,8 +10,9 @@ headers = {
     'Connection': 'close',
 }
 
-def requester(url, scheme, origin):
+def requester(url, scheme, origin, insecure):
+	urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 	headers['Origin'] = scheme + origin
-	response = requests.get(url, headers=headers).headers
+	response = requests.get(url, headers=headers, verify=insecure).headers
 	if 'Access-Control-Allow-Origin' in response:
 		return response['Access-Control-Allow-Origin']
