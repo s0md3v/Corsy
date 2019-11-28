@@ -7,7 +7,7 @@
 	"third party allowed" : {
 		"Description" : "This host has whitelisted a third party host for cross origin requests.",
 		"Severity" : "Medium",
-		"Exploitation" : "If the whitelisted host is a code hosting platform such as codepen.io or has an XSS vulnerbaility, it can be used to exploit this misconfiguration."
+		"Exploitation" : "If the whitelisted host is a code hosting platform such as codepen.io or has an XSS vulnerability, it can be used to exploit this misconfiguration."
 
 	},
 	"origin reflected" : {
@@ -21,7 +21,7 @@
 		"Exploitation" : "Not possible"
 	},
 	"post-domain wildcard" : {
-		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as a preffix.",
+		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as a prefix.",
 		"Severity" : "High",
 		"Exploitation" : "Make requests from target.com.attacker.com"
 	},
@@ -33,7 +33,7 @@
 	"null origin allowed" : {
 		"Description" : "This host allows requests from 'null' origin.",
 		"Severity" : "High",
-		"Exploitation" : "Make requests from a sanboxed iframe."
+		"Exploitation" : "Make requests from a sandboxed iframe."
 	},
 	"http origin allowed" : {
 		"Description" : "This host allows sharing resources over an unencrypted (HTTP) connection.",
@@ -48,6 +48,6 @@
 	"unescaped regex" : {
 		"Description" : "The regex used for origin verification contains an unescaped dot (.) character.",
 		"Severity" : "High",
-		"Exploitation" : "If the target is sub.example.com, make requests from subxexample.com"
+		"Exploitation" : "If the target is sub.example.com, make requests from subexample.com"
 	}
 }
