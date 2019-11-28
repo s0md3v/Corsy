@@ -48,6 +48,6 @@
 	"unescaped regex" : {
 		"Description" : "The regex used for origin verification contains an unescaped dot (.) character.",
 		"Severity" : "High",
-		"Exploitation" : "If the target is sub.example.com, make requests from subexample.com"
+		"Exploitation" : "If the target is sub.example.com, make requests from subxexample.com"
 	}
 }
