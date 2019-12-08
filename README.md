@@ -38,6 +38,20 @@ Using Corsy is pretty simple
 
 A delay between consecutive requests can be specified with `-d` option.
 
+### Docker
+If you want to build the container yourself manually, git clone the repo, then build and run the following commands
+
+- Clone the repo using `git clone https://github.com/s0md3v/Corsy`
+- Build your docker container
+```bash
+docker build -t corsy .
+```
+
+- After building the container using either way, run the following - 
+```bash
+docker run -it corsy -u https://example.com
+```
+
 > *Note:* This is a beta version, features such as JSON output and scanning multiple hosts will be added later.
 
 ### Tests implemented
