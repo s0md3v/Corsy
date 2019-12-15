@@ -1,4 +1,7 @@
+import urllib3
 import requests
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0',
@@ -10,6 +13,13 @@ headers = {
 }
 
 def requester(url, scheme, origin):
+
     headers['Origin'] = scheme + origin
-    response = requests.get(url, headers=headers).headers
+    response = requests.get(url, headers=headers, verify=False).headers
     return response.get('Access-Control-Allow-Origin', None)
+=======
+	headers['Origin'] = scheme + origin
+	response = requests.get(url, headers=headers, verify=False).headers
+	if 'Access-Control-Allow-Origin' in response:
+		return response['Access-Control-Allow-Origin']
+
