@@ -7,7 +7,7 @@ import argparse
 
 from core.tests import active_tests
 from core.utils import host, prompt, format_result, create_url_list
-from core.colors import bad, end, red, good, grey, info, green, white
+from core.colors import bad, end, red, run, good, grey, green, white, yellow
 
 
 print('''
@@ -19,7 +19,7 @@ try:
     import concurrent.futures
     from urllib.parse import urlparse
 except ImportError:
-    print('%s corsy needs Python > 3.4 to run.' % bad)
+    print(' %s corsy needs Python > 3.4 to run.' % bad)
     quit()
 
 parser = argparse.ArgumentParser()
@@ -67,7 +67,8 @@ def cors(target, header_dict, delay):
 
 
 if urls:
-    print('%s Estimated scan time: %i secs' % (info, round(len(urls) * 1.75)))
+    if len(urls) > 1:
+        print(' %s Estimated scan time: %i secs' % (run, round(len(urls) * 1.75)))
     results = []
     threadpool = concurrent.futures.ThreadPoolExecutor(max_workers=threads)
     futures = (threadpool.submit(cors, url, header_dict, delay) for url in urls)
@@ -76,20 +77,20 @@ if urls:
         results.append(result)
         if result:
             for i in result:
-                print('%s URL: %s' % (good, i))
-                print('  %s-%s Class: %s' % (green, end, result[i]['class']))
+                print(' %s %s' % (good, i))
+                print('   %s-%s Class: %s' % (yellow, end, result[i]['class']))
                 if not quiet:
-                    print('  %s-%s Description: %s' % (green, end, result[i]['description']))
-                    print('  %s-%s Severity: %s' % (green, end, result[i]['severity']))
-                    print('  %s-%s Exploitation: %s' % (green, end, result[i]['exploitation']))
-                print('  %s-%s ACAO Header: %s' % (green, end, result[i]['acao header']))
-                print('  %s-%s ACAC Header: %s\n' % (green, end, result[i]['acac header']))
+                    print('   %s-%s Description: %s' % (yellow, end, result[i]['description']))
+                    print('   %s-%s Severity: %s' % (yellow, end, result[i]['severity']))
+                    print('   %s-%s Exploitation: %s' % (yellow, end, result[i]['exploitation']))
+                print('   %s-%s ACAO Header: %s' % (yellow, end, result[i]['acao header']))
+                print('   %s-%s ACAC Header: %s\n' % (yellow, end, result[i]['acac header']))
     results = format_result(results)
     if results:
         if json_file:
             with open(json_file, 'w+') as file:
                 json.dump(results, file, indent=4)
     else:
-        print('%s No misconfigurations found.' % bad)
+        print(' %s No misconfigurations found.' % bad)
 else:
-    print('%s No valid URLs to test.' % bad)
+    print(' %s No valid URLs to test.' % bad)
