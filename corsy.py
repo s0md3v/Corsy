@@ -30,8 +30,7 @@ def cors(target, delay, scheme=False):
 		url = scheme + '://' + url
 	root = host(url)
 	parsed = urlparse(url)
-	netloc = parsed.netloc
-	scheme = parsed.scheme
+	netloc, scheme = parsed.netloc, parsed.scheme
 	url = scheme + '://' + netloc
 	active = active_tests(url, root, scheme, delay)
 	return active
