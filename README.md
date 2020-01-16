@@ -21,7 +21,7 @@
 ### Introduction
 Corsy is a lightweight program that scans for all known misconfigurations in CORS implementations.
 
-![demo](https://i.ibb.co/478BCyb/corsy.png)
+![demo](https://i.ibb.co/Jc1HtmW/corsy.png)
 
 ### Requirements
 Corsy only works with `Python 3` and has the following depencies:
