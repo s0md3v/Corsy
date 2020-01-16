@@ -36,9 +36,23 @@ Using Corsy is pretty simple
 
 `python3 corsy.py -u https://example.com`
 
-A delay between consecutive requests can be specified with `-d` option.
+##### Scan URLs from a file
+`python3 corsy.py -i /path/urls.txt`
 
-> *Note:* This is a beta version, features such as JSON output and scanning multiple hosts will be added later.
+##### Number of threads
+`python3 corsy.py -u https://example.com -t 20`
+
+##### Delay between requests
+`python3 corsy.py -u https://example.com -d 2`
+
+##### Export results to JSON
+`python3 corsy.py -i /path/urls.txt -o /path/output.json`
+
+##### Custom HTTP headers
+`python3 corsy.py -u https://example.com --headers "User-Agent: GoogleBot\nCookie: SESSION=Hacked"`
+
+##### Skip printing tips
+`-q` can be used to skip printing of `description`, `severity`, `exploitation` fields in the output.
 
 ### Tests implemented
 - Pre-domain bypass
@@ -54,4 +68,5 @@ A delay between consecutive requests can be specified with `-d` option.
 ### Support the developer
 Liked the project? Donate a few bucks to motivate me to keep writing code for free.
 
-[![Donate](https://i.ibb.co/1R5wK5S/28491754-14774f54-6f14-11e7-9975-8a5faeda7e30.gif)](https://s0md3v.github.io/donate.html)
+- [Paypal](https://www.paypal.me/s0md3v)
+- [Patreon](https://www.patreon.com/s0md3v)
