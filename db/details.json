@@ -1,53 +1,63 @@
 {
 	"wildcard value" : {
-		"Description" : "This host allows requests made from any origin. However, browsers will block all requests to this host by default.",
-		"Severity" : "Low",
-		"Exploitation" : "Not possible"
+		"class" : "wildcard value",
+		"description" : "This host allows requests made from any origin. However, browsers will block all requests to this host by default.",
+		"severity" : "low",
+		"exploitation" : "Not possible"
 	},
 	"third party allowed" : {
-		"Description" : "This host has whitelisted a third party host for cross origin requests.",
-		"Severity" : "Medium",
-		"Exploitation" : "If the whitelisted host is a code hosting platform such as codepen.io or has an XSS vulnerability, it can be used to exploit this misconfiguration."
+		"class" : "third party allowed",
+		"description" : "This host has whitelisted a third party host for cross origin requests.",
+		"severity" : "Medium",
+		"exploitation" : "If the whitelisted host is a code hosting platform such as codepen.io or has an XSS vulnerability, it can be used to exploit this misconfiguration."
 
 	},
-	"origin reflected" : {
-		"Description" : "This host allows any origin to make requests to it.",
-		"Severity" : "High",
-		"Exploitation" : "Make requests from any domain you control."
+	"origin reflected": {
+		"class" : "origin reflected",
+		"description" : "This host allows any origin to make requests to it.",
+		"severity" : "high",
+		"exploitation" : "Make requests from any domain you control."
 	},
 	"invalid value" : {
-		"Description" : "Header's value is invalid, this CORS implementation doesn't work at all.",
-		"Severity" : "Low",
-		"Exploitation" : "Not possible"
+		"class" : "invalid value",
+		"description" : "Header's value is invalid, this CORS implementation doesn't work at all.",
+		"severity" : "low",
+		"exploitation" : "Not possible"
 	},
 	"post-domain wildcard" : {
-		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as a prefix.",
-		"Severity" : "High",
-		"Exploitation" : "Make requests from target.com.attacker.com"
+		"class" : "post-domain wildcard",
+		"description" : "The origin verification is flawed, it allows requests from a host that has this host as a prefix.",
+		"severity" : "high",
+		"exploitation" : "Make requests from target.com.attacker.com"
 	},
 	"pre-domain wildcard" : {
-		"Description" : "The origin verification is flawed, it allows requests from a host that has this host as a suffix.",
-		"Severity" : "High",
-		"Exploitation" : "Make requests from attacker-target.com"
+		"class" : "pre-domain wildcard",
+		"description" : "The origin verification is flawed, it allows requests from a host that has this host as a suffix.",
+		"severity" : "high",
+		"exploitation" : "Make requests from attacker-target.com"
 	},
 	"null origin allowed" : {
-		"Description" : "This host allows requests from 'null' origin.",
-		"Severity" : "High",
-		"Exploitation" : "Make requests from a sandboxed iframe."
+		"class" : "null origin allowed",
+		"description" : "This host allows requests from 'null' origin.",
+		"severity" : "high",
+		"exploitation" : "Make requests from a sandboxed iframe."
 	},
 	"http origin allowed" : {
-		"Description" : "This host allows sharing resources over an unencrypted (HTTP) connection.",
-		"Severity" : "Low",
-		"Exploitation" : "Sniff requests made over the unencrypted channel."
+		"class" : "http origin allowed",
+		"description" : "This host allows sharing resources over an unencrypted (HTTP) connection.",
+		"severity" : "low",
+		"exploitation" : "Sniff requests made over the unencrypted channel."
 	},
 	"broken parser" : {
-		"Description" : "The origin verification is flawed and can be bypassed using a backtick (`).",
-		"Severity" : "High",
-		"Exploitation" : "Set the 'Origin' header to %60.example.com"
+		"class" : "broken parser",
+		"description" : "The origin verification is flawed and can be bypassed using a backtick (`).",
+		"severity" : "high",
+		"exploitation" : "Set the 'Origin' header to %60.example.com"
 	},
 	"unescaped regex" : {
-		"Description" : "The regex used for origin verification contains an unescaped dot (.) character.",
-		"Severity" : "High",
-		"Exploitation" : "If the target is sub.example.com, make requests from subxexample.com"
+		"class" : "unescaped regex",
+		"description" : "The regex used for origin verification contains an unescaped dot (.) character.",
+		"severity" : "high",
+		"exploitation" : "If the target is sub.example.com, make requests from subxexample.com"
 	}
 }
