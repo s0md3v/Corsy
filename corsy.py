@@ -6,8 +6,8 @@ import json
 import argparse
 
 from core.tests import active_tests
-from core.utils import host, prompt, format_result, create_url_list, parse_burp
 from core.colors import bad, end, red, run, good, grey, green, white, yellow
+from core.utils import host, prompt, format_result, create_url_list, burp_parser
 
 
 print('''
@@ -26,19 +26,19 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-u', help='target url', dest='target')
 parser.add_argument('-o', help='json output file', dest='json_file')
 parser.add_argument('-i', help='input file urls/subdomains', dest='inp_file')
-parser.add_argument('-b', help='treat input file as Burp Suite logs',dest='burp_file',action='store_true')
 parser.add_argument('-t', help='thread count', dest='threads', type=int, default=2)
 parser.add_argument('-d', help='request delay', dest='delay', type=float, default=0)
 parser.add_argument('-q', help='don\'t print help tips', dest='quiet', action='store_true')
 parser.add_argument('--headers', help='add headers', dest='header_dict', nargs='?', const=True)
+parser.add_argument('-b', help='input file has Burp Suite logs', dest='burp_log', action='store_true')
 args = parser.parse_args()
 
 delay = args.delay
 quiet = args.quiet
-log_file = args.burp_file
 target = args.target
 threads = args.threads
 inp_file = args.inp_file
+burp_log = args.burp_log
 json_file = args.json_file
 header_dict = args.header_dict
 
@@ -57,8 +57,8 @@ else:
         'Connection': 'close',
     }
 
-if log_file:
-    urls = parse_burp(inp_file)
+if burp_log:
+    urls = burp_parser(inp_file)
 else:
     urls = create_url_list(target, inp_file)
 
