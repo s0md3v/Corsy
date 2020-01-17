@@ -1,8 +1,8 @@
 import os
+import csv
 import tld
 import json
 import tempfile
-import csv
 
 def host(string):
     if string and '*' not in string:
@@ -68,7 +68,7 @@ def extractHeaders(headers):
             pass
     return sorted_headers
 
-def url_from_logs(inp_file):
+def parse_burp(inp_file):
     urls = []
     with open(inp_file, 'r') as file:
         log_csv = csv.DictReader(file)
