@@ -68,12 +68,12 @@ def extractHeaders(headers):
             pass
     return sorted_headers
 
-def parse_burp(inp_file):
+def burp_parser(inp_file):
     urls = []
     with open(inp_file, 'r') as file:
         log_csv = csv.DictReader(file)
         for line in log_csv:
-            url = line['Host']+line['Path']
+            url = line['Host'] + line['Path']
             if url not in urls:
                 urls.append(url)
     return urls
