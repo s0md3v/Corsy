@@ -2,7 +2,7 @@ import os
 import tld
 import json
 import tempfile
-
+import csv
 
 def host(string):
     if string and '*' not in string:
@@ -67,3 +67,13 @@ def extractHeaders(headers):
         except IndexError:
             pass
     return sorted_headers
+
+def url_from_logs(inp_file):
+    urls = []
+    with open(inp_file, 'r') as file:
+        log_csv = csv.DictReader(file)
+        for line in log_csv:
+            url = line['Host']+line['Path']
+            if url not in urls:
+                urls.append(url)
+    return urls
