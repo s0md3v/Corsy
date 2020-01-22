@@ -1,5 +1,4 @@
-IMAGE := x0rzkov/corsy
-VERSION:= $(shell grep CORSY_VERSION Dockerfile | awk '{print $2}' | cut -d '=' -f 2)
+IMAGE := s0md3v/corsy
 
 VERSION := $(shell git describe HEAD --always)
 BRANCH := $(shell git rev-parse --abbrev-ref HEAD | tr / -)
