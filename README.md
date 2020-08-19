@@ -39,6 +39,9 @@ Using Corsy is pretty simple
 ##### Scan URLs from a file
 `python3 corsy.py -i /path/urls.txt`
 
+##### Scan URLs from stdin
+`cat urls.txt | python3 corsy.py`
+
 ##### Number of threads
 `python3 corsy.py -u https://example.com -t 20`
 
