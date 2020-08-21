@@ -6,7 +6,7 @@ import json
 import argparse
 
 from core.tests import active_tests
-from core.utils import host, prompt, format_result, extractHeaders, create_url_list,create_url_list, create_stdin_list
+from core.utils import host, prompt, format_result, extractHeaders, create_url_list, create_stdin_list
 from core.colors import bad, end, red, run, good, grey, green, white, yellow
 
 
