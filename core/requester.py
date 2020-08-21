@@ -17,3 +17,5 @@ def requester(url, scheme, headers, origin):
     except requests.exceptions.RequestException as e:
         if 'Failed to establish a new connection' in str(e):
             print ( ' ' + bad + ' ' + url + ' seems to be down')
+        elif 'requests.exceptions.TooManyRedirects:' in str(e):
+        	print (' ' + bad + ' ' + url + 'has too many redirects')
