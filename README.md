@@ -54,6 +54,13 @@ Using Corsy is pretty simple
 ##### Skip printing tips
 `-q` can be used to skip printing of `description`, `severity`, `exploitation` fields in the output.
 
+#### Using with docker
+It is also possible to start corsy in a docker container
+```
+$ docker build -t corsy .
+$ docker run --rm corsy -u https://example.com
+```
+
 ### Tests implemented
 - Pre-domain bypass
 - Post-domain bypass
