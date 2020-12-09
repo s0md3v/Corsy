@@ -1,4 +1,5 @@
 import os
+import re
 import tld
 import json
 import tempfile
