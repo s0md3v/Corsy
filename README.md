@@ -24,7 +24,7 @@ Corsy is a lightweight program that scans for all known misconfigurations in COR
 ![demo](https://i.ibb.co/Jc1HtmW/corsy.png)
 
 ### Requirements
-Corsy only works with `Python 3` and has the following depencies:
+Corsy only works with `Python 3` and has the following dependencies:
 
 - `tld`
 - `requests`
