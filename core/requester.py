@@ -8,7 +8,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Added verbose options.
 
 def requester(url, scheme, headers, origin):
-    headers['Origin'] = scheme + origin
+    headers['Origin'] = origin
     try:
         response = requests.get(url, headers=headers, verify=False).headers
         for key, value in response.items():
@@ -19,3 +19,4 @@ def requester(url, scheme, headers, origin):
             print ('%s %s is unreachable' % (bad, url))
         elif 'requests.exceptions.TooManyRedirects:' in str(e):
         	print ('%s %s has too many redirects' % (bad, url))
+    return {}
