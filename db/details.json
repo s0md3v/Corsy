@@ -48,6 +48,12 @@
 		"severity" : "low",
 		"exploitation" : "Sniff requests made over the unencrypted channel."
 	},
+	"unrecognized underscore" : {
+		"class" : "unrecognized underscore",
+		"description" : "The origin verification is flawed and can be bypassed using a underscore (_).",
+		"severity" : "high",
+		"exploitation" : "Set the 'Origin' header to target.com_.example.com"
+	},
 	"broken parser" : {
 		"class" : "broken parser",
 		"description" : "The origin verification is flawed and can be bypassed using a backtick (`).",

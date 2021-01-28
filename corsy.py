@@ -4,6 +4,7 @@
 import sys
 import json
 import argparse
+from requests.exceptions import ConnectionError
 
 from core.tests import active_tests
 from core.utils import host, prompt, format_result, extractHeaders, create_url_list, create_stdin_list
@@ -69,8 +70,10 @@ def cors(target, header_dict, delay):
     netloc = parsed.netloc
     scheme = parsed.scheme
     url = scheme + '://' + netloc + parsed.path
-    return active_tests(url, root, scheme, header_dict, delay)
-
+    try:
+        return active_tests(url, root, scheme, header_dict, delay)
+    except ConnectionError as exc:
+        print('%s Unable to connect to %s' % (bad, root))
 
 if urls:
     if len(urls) > 1:

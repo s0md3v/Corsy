@@ -62,6 +62,15 @@ def active_tests(url, root, scheme, header_dict, delay):
             return {url : info}
         time.sleep(delay)
 
+        headers = requester(url, scheme, header_dict, root + '_.example.com')
+        acao_header, acac_header = headers['access-control-allow-origin'], headers.get('access-control-allow-credentials', None)
+        if acao_header and '_.example.com' in acao_header:
+            info = details['unrecognized underscore']
+            info['acao header'] = acao_header
+            info['acac header'] = acac_header
+            return {url : info}
+        time.sleep(delay)
+
         headers = requester(url, scheme, header_dict, root + '%60.example.com')
         acao_header, acac_header = headers['access-control-allow-origin'], headers.get('access-control-allow-credentials', None)
         if acao_header and '`.example.com' in acao_header:
