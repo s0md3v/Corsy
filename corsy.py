@@ -7,7 +7,7 @@ import argparse
 from requests.exceptions import ConnectionError
 
 from core.tests import active_tests
-from core.utils import host, prompt, format_result, extractHeaders, create_url_list
+from core.utils import host, prompt, format_result, extractHeaders, create_url_list, create_stdin_list
 from core.colors import bad, end, red, run, good, grey, green, white, yellow
 
 
@@ -55,7 +55,13 @@ else:
         'Connection': 'close',
     }
 
-urls = create_url_list(target, inp_file)
+
+# PIPE output from other tools such as httprobe etc
+if sys.stdin.isatty():
+    urls = create_url_list(target, inp_file)
+else:
+    urls = create_stdin_list(target, sys.stdin)
+
 
 def cors(target, header_dict, delay):
     url = target
@@ -63,12 +69,11 @@ def cors(target, header_dict, delay):
     parsed = urlparse(url)
     netloc = parsed.netloc
     scheme = parsed.scheme
-    url = scheme + '://' + netloc
+    url = scheme + '://' + netloc + parsed.path
     try:
         return active_tests(url, root, scheme, header_dict, delay)
     except ConnectionError as exc:
-        print(f'[WARNING] Unable to connect to {target}: {exc}')
-
+        print('%s Unable to connect to %s' % (bad, root))
 
 if urls:
     if len(urls) > 1:

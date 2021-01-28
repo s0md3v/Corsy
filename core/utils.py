@@ -2,6 +2,7 @@ import os
 import re
 import json
 import tempfile
+import re
 
 from urllib.parse import urlparse
 
@@ -35,6 +36,15 @@ def create_url_list(target_url, inp_file):
         urls.append(target_url)
     return urls
 
+def create_stdin_list(target_url, inp_file):
+    urls = []
+    if inp_file:
+        for line in inp_file.readlines():
+            if line.startswith(('http://', 'https://')):
+                urls.append(line.rstrip('\n'))
+    if target_url and target_url.startswith(('http://', 'https://')):
+        urls.append(target_url)
+    return urls
 
 def prompt(default=None):
     editor = 'nano'
