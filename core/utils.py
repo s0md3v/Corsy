@@ -1,13 +1,13 @@
 import os
 import re
-import tld
 import json
 import tempfile
 
+from urllib.parse import urlparse
 
 def host(string):
     if string and '*' not in string:
-        return tld.get_fld(string, fix_protocol=True, fail_silently=True)
+        return urlparse(string).netloc
 
 
 def load_json(file):
