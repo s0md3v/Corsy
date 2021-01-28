@@ -60,13 +60,9 @@ Using Corsy is pretty simple
 - Backtick bypass
 - Null origin bypass
 - Unescaped dot bypass
+- Underscore bypass
 - Invalid value
 - Wild card value
 - Origin reflection test
 - Third party allowance test
 - HTTP allowance test
-### Support the developer
-Liked the project? Donate a few bucks to motivate me to keep writing code for free.
-
-- [Paypal](https://www.paypal.me/s0md3v)
-- [Patreon](https://www.patreon.com/s0md3v)
