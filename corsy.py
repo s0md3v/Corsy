@@ -61,7 +61,7 @@ else:
 
 
 # PIPE output from other tools such as httprobe etc
-if ( sys.stdin.isatty()):
+if sys.stdin.isatty():
     urls = create_url_list(target, inp_file)
 else:
     urls = create_stdin_list(target, sys.stdin)
