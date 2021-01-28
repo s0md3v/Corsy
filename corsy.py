@@ -30,7 +30,6 @@ parser.add_argument('-t', help='thread count', dest='threads', type=int, default
 parser.add_argument('-d', help='request delay', dest='delay', type=float, default=0)
 parser.add_argument('-q', help='don\'t print help tips', dest='quiet', action='store_true')
 parser.add_argument('--headers', help='add headers', dest='header_dict', nargs='?', const=True)
-parser.add_argument('-v', help='verbose', dest='verbose',type=str, default=False)
 args = parser.parse_args()
 
 delay = args.delay
@@ -40,10 +39,6 @@ threads = args.threads
 inp_file = args.inp_file
 json_file = args.json_file
 header_dict = args.header_dict
-verbose = args.verbose
-
-if verbose:
-    print ('verbos is enabled')
 
 if type(header_dict) == bool:
     header_dict = extractHeaders(prompt())
