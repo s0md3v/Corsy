@@ -28,7 +28,7 @@ Corsy only works with `Python 3` and has just one dependency:
 
 - `requests`
 
-To install this dependency, navigate to Corsy directory and execute `pip3 install request`
+To install this dependency, navigate to Corsy directory and execute `pip3 install requests`
 
 ### Usage
 Using Corsy is pretty simple
