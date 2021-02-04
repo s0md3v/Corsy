@@ -5,6 +5,8 @@ import sys
 import json
 import argparse
 from requests.exceptions import ConnectionError
+from requests.packages.urllib3 import disable_warnings
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 from core.tests import active_tests
 from core.utils import host, prompt, format_result, extractHeaders, create_url_list, create_stdin_list
@@ -15,6 +17,7 @@ print('''
     %sＣＯＲＳＹ  %s{%sv1.0-beta%s}%s
 ''' % (green, white, grey, white, end))
 
+disable_warnings(InsecureRequestWarning)
 
 try:
     import concurrent.futures
