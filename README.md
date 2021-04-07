@@ -28,8 +28,23 @@ Corsy only works with `Python 3` and has just one dependency:
 
 - `requests`
 
-To install this dependency, navigate to Corsy directory and execute `pip3 install requests`
+To get corsy installed locally on your machine clone the repository and install the dependency.
 
+```bash 
+  $ git clone https://github.com/s0md3v/Corsy
+  $ cd Corsy
+  $ pip install requests
+  ```
+
+Or you can install and run corsy using [Docker](https://www.docker.com/).
+
+```bash
+  $ git clone https://github.com/s0md3v/Corsy
+  $ cd Corsy
+  $ docker build . -t corsy
+  $ docker container run -it "bin/bash"
+  ```
+  
 ### Usage
 Using Corsy is pretty simple
 
