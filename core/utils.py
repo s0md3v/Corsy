@@ -64,17 +64,13 @@ def prompt(default=None):
             return tmpfile.read().strip()
 
 
-def extractHeaders(headers):
-    headers = headers.replace('\\n', '\n')
+def extractHeaders(headers: str):
     sorted_headers = {}
-    matches = re.findall(r'^?(.*?):\s(.*?)[\n$]', headers)
-    for match in matches:
-        header = match[0]
-        value = match[1]
-        try:
-            if value[-1] == ',':
-                value = value[:-1]
-            sorted_headers[header] = value
-        except IndexError:
-            pass
+    for header in headers.split('\\n'):
+        name, value = header.split(":", 1)
+        name = name.strip()
+        value = value.strip()
+        if len(value) >= 1 and value[-1] == ',':
+            value = value[:-1]
+        sorted_headers[name] = value
     return sorted_headers
