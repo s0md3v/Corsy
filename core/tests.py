@@ -29,7 +29,7 @@ def active_tests(url, root, scheme, header_dict, delay):
     if acao_header is None:
         return
     
-    origin = root + '://' + 'example.com'
+    origin = scheme + '://' + 'example.com'
     headers = requester(url, scheme, header_dict, origin)
     acao_header, acac_header = headers.get('access-control-allow-origin', None), headers.get('access-control-allow-credentials', None)
     if acao_header and acao_header == (origin):
