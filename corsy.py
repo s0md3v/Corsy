@@ -31,6 +31,7 @@ parser.add_argument('-t', help='thread count', dest='threads', type=int, default
 parser.add_argument('-d', help='request delay', dest='delay', type=float, default=0)
 parser.add_argument('-q', help='don\'t print help tips', dest='quiet', action='store_true')
 parser.add_argument('--headers', help='add headers', dest='header_dict', nargs='?', const=True)
+parser.add_argument('--proxy', help='use proxy', dest='proxy', nargs='?', const=True)
 args = parser.parse_args()
 
 delay = args.delay
@@ -40,6 +41,7 @@ threads = args.threads
 inp_file = args.inp_file
 json_file = args.json_file
 header_dict = args.header_dict
+proxy = args.proxy
 
 if type(header_dict) == bool:
     header_dict = extractHeaders(prompt())
@@ -71,7 +73,7 @@ def cors(target, header_dict, delay):
     scheme = parsed.scheme
     url = scheme + '://' + netloc + parsed.path
     try:
-        return active_tests(url, root, scheme, header_dict, delay)
+        return active_tests(url, root, scheme, header_dict, delay, proxy)
     except ConnectionError as exc:
         print('%s Unable to connect to %s' % (bad, root))
 
