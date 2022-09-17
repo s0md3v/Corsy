@@ -7,10 +7,15 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Added better error handling.
 # Added verbose options.
 
-def requester(url, scheme, headers, origin):
+def requester(url, scheme, headers, origin, proxy):
     headers['Origin'] = origin
+    proxies = {}
+    if proxy:
+        proxies["http"] = proxy
+        proxies["https"] = proxy
+
     try:
-        response = requests.get(url, headers=headers, verify=False)
+        response = requests.get(url, headers=headers, proxies=proxies, verify=False)
         headers = response.headers
         for key, value in headers.items():
             if key.lower() == 'access-control-allow-origin':
