@@ -56,6 +56,9 @@ Using Corsy is pretty simple
 ##### Skip printing tips
 `-q` can be used to skip printing of `description`, `severity`, `exploitation` fields in the output.
 
+##### Skip wildcard test
+Since wild card origin can't be used to exploitation `--skip-wildcard` can be used to skip printing of wildcard origin output. 
+
 ### Tests implemented
 - Pre-domain bypass
 - Post-domain bypass

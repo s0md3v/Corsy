@@ -31,6 +31,7 @@ parser.add_argument('-t', help='thread count', dest='threads', type=int, default
 parser.add_argument('-d', help='request delay', dest='delay', type=float, default=0)
 parser.add_argument('-q', help='don\'t print help tips', dest='quiet', action='store_true')
 parser.add_argument('--headers', help='add headers', dest='header_dict', nargs='?', const=True)
+parser.add_argument('--skip-wildcard', help='skip wildcard origin check', dest='skip_wildcard', action='store_true')
 args = parser.parse_args()
 
 delay = args.delay
@@ -40,6 +41,7 @@ threads = args.threads
 inp_file = args.inp_file
 json_file = args.json_file
 header_dict = args.header_dict
+skip_wildcard = args.skip_wildcard
 
 if type(header_dict) == bool:
     header_dict = extractHeaders(prompt())
@@ -63,7 +65,7 @@ else:
     urls = create_stdin_list(target, sys.stdin)
 
 
-def cors(target, header_dict, delay):
+def cors(target, header_dict, delay, skip_wildcard = False):
     url = target
     root = host(url)
     parsed = urlparse(url)
@@ -71,7 +73,7 @@ def cors(target, header_dict, delay):
     scheme = parsed.scheme
     url = scheme + '://' + netloc + parsed.path
     try:
-        return active_tests(url, root, scheme, header_dict, delay)
+        return active_tests(url, root, scheme, header_dict, delay, skip_wildcard)
     except ConnectionError as exc:
         print('%s Unable to connect to %s' % (bad, root))
 
@@ -80,7 +82,7 @@ if urls:
         print(' %s Estimated scan time: %i secs' % (run, round(len(urls) * 1.75)))
     results = []
     threadpool = concurrent.futures.ThreadPoolExecutor(max_workers=threads)
-    futures = (threadpool.submit(cors, url, header_dict, delay) for url in urls)
+    futures = (threadpool.submit(cors, url, header_dict, delay, skip_wildcard) for url in urls)
     for each in concurrent.futures.as_completed(futures):
         result = each.result()
         results.append(result)

@@ -6,10 +6,10 @@ from core.utils import host, load_json
 
 details = load_json(sys.path[0] + '/db/details.json')
 
-def passive_tests(url, headers):
+def passive_tests(url, headers, skip_wildcard = False):
     root = host(url)
     acao_header, acac_header = headers.get('access-control-allow-origin', None), headers.get('access-control-allow-credentials', None)
-    if acao_header == '*':
+    if acao_header == '*' and not skip_wildcard:
         info = details['wildcard value']
         info['acao header'] = acao_header
         info['acac header'] = acac_header
@@ -22,7 +22,7 @@ def passive_tests(url, headers):
             return {url : info}
 
 
-def active_tests(url, root, scheme, header_dict, delay):
+def active_tests(url, root, scheme, header_dict, delay, skip_wildcard = False):
     origin = scheme + '://' + root
     headers = requester(url, scheme, header_dict, origin)
     acao_header, acac_header = headers.get('access-control-allow-origin', None), headers.get('access-control-allow-credentials', None)
@@ -108,4 +108,4 @@ def active_tests(url, root, scheme, header_dict, delay):
         info['acac header'] = acac_header
         return {url : info}
     else:
-        return passive_tests(url, headers)
+        return passive_tests(url, headers, skip_wildcard)
