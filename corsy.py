@@ -82,7 +82,13 @@ if urls:
     threadpool = concurrent.futures.ThreadPoolExecutor(max_workers=threads)
     futures = (threadpool.submit(cors, url, header_dict, delay) for url in urls)
     for each in concurrent.futures.as_completed(futures):
-        result = each.result()
+        try:
+            result = each.result(timeout=15)
+        except concurrent.futures.TimeoutError:
+            print(' %s A thread timed out, skipping.' % bad)
+            continue
+        except ConnectionError as exc:
+            continue
         results.append(result)
         if result:
             for i in result:

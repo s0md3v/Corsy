@@ -10,11 +10,13 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 def requester(url, scheme, headers, origin):
     headers['Origin'] = origin
     try:
-        response = requests.get(url, headers=headers, verify=False)
+        response = requests.get(url, headers=headers, verify=False, timeout=10)
         headers = response.headers
         for key, value in headers.items():
             if key.lower() == 'access-control-allow-origin':
                 return headers
+    except requests.exceptions.Timeout:
+        pass
     except requests.exceptions.RequestException as e:
         if 'Failed to establish a new connection' in str(e):
             print ('%s %s is unreachable' % (bad, url))
