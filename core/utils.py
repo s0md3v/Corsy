@@ -11,6 +11,19 @@ def host(string):
         return urlparse(string).netloc
 
 
+def normalize_url(url):
+    """Rebuild a URL without dropping its path parameters, query or fragment."""
+    parsed = urlparse(url)
+    normalized = parsed.scheme + '://' + parsed.netloc + parsed.path
+    if parsed.params:
+        normalized += ';' + parsed.params
+    if parsed.query:
+        normalized += '?' + parsed.query
+    if parsed.fragment:
+        normalized += '#' + parsed.fragment
+    return normalized
+
+
 def load_json(file):
     with open(file) as f:
         return json.load(f)

@@ -7,7 +7,7 @@ import argparse
 from requests.exceptions import ConnectionError
 
 from core.tests import active_tests
-from core.utils import host, prompt, format_result, extractHeaders, create_url_list, create_stdin_list
+from core.utils import host, prompt, format_result, extractHeaders, create_url_list, create_stdin_list, normalize_url
 from core.colors import bad, end, red, run, good, grey, green, white, yellow
 
 
@@ -67,9 +67,8 @@ def cors(target, header_dict, delay):
     url = target
     root = host(url)
     parsed = urlparse(url)
-    netloc = parsed.netloc
     scheme = parsed.scheme
-    url = scheme + '://' + netloc + parsed.path
+    url = normalize_url(url)
     try:
         return active_tests(url, root, scheme, header_dict, delay)
     except ConnectionError as exc:
